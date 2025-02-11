@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic-Tac-Toe Multi Mode</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header with theme selector and ping display -->
+    <header>
+      <h1>Tic-Tac-Toe</h1>
+      <div id="theme-selector">
+        <label for="themeSelect">Theme:</label>
+        <select id="themeSelect">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+      <div id="pingDisplay">Ping: -- ms</div>
+    </header>
+    
+    <!-- Mode Selection (vertical list with fadeIn) -->
+    <div id="mode-selection">
+      <button id="offlinePvPBtn">Offline PvP</button>
+      <button id="offlinePvAIBtn">Player vs AI</button>
+      <button id="onlineModeBtn">Online Mode</button>
+    </div>
+    
+    <!-- Offline PvP Setup -->
+    <div id="offlinePvP-setup" class="setup" style="display:none;">
+      <input type="text" id="pvp-player1" placeholder="Player 1 Name" />
+      <input type="text" id="pvp-player2" placeholder="Player 2 Name" />
+      <button id="startPvPBtn">Start Game</button>
+    </div>
+    
+    <!-- Offline PvAI Setup -->
+    <div id="offlinePvAI-setup" class="setup" style="display:none;">
+      <input type="text" id="pvai-player" placeholder="Your Name" />
+      <button id="startPvAIBtn">Start Game</button>
+    </div>
+    
+    <!-- Online Setup -->
+    <div id="online-setup" class="setup" style="display:none;">
+      <div id="online-options">
+        <button id="createRoomBtn">Create Room</button>
+        <button id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="online-create" style="display:none;">
+        <input type="text" id="online-roomName-create" placeholder="Room Name" />
+        <input type="password" id="online-roomPass-create" placeholder="Room Password" />
+        <input type="text" id="online-playerName-create" placeholder="Your Name" />
+        <button id="startOnlineCreateBtn">Create &amp; Start</button>
+      </div>
+      <div id="online-join" style="display:none;">
+        <input type="text" id="online-roomName-join" placeholder="Room Name" />
+        <input type="password" id="online-roomPass-join" placeholder="Room Password" />
+        <input type="text" id="online-playerName-join" placeholder="Your Name" />
+        <button id="startOnlineJoinBtn">Join &amp; Start</button>
+      </div>
+      <div id="online-waiting" style="display:none;">Waiting for opponent...</div>
+      <div id="online-loading" class="loading-spinner" style="display:none;"></div>
+      <div id="online-error" style="display:none;color:#f00;"></div>
+    </div>
+    
+    <!-- Game Container -->
+    <div id="game-container" style="display:none;">
+      <button id="closeGameBtn">Close Game</button>
+      <div id="player-info">
+        <div id="player1-info" class="player-info-box">
+          <img id="player1-pic" src="user1.png" alt="Player 1" />
+          <span id="player1-name"></span>
+          <div class="reaction-overlay" id="player1-reaction"></div>
+        </div>
+        <div id="player2-info" class="player-info-box">
+          <img id="player2-pic" src="user2.png" alt="Player 2" />
+          <span id="player2-name"></span>
+          <div class="reaction-overlay" id="player2-reaction"></div>
+        </div>
+      </div>
+      <div id="game-board" class="game-board">
+        <div class="cell" id="cell-0"></div>
+        <div class="cell" id="cell-1"></div>
+        <div class="cell" id="cell-2"></div>
+        <div class="cell" id="cell-3"></div>
+        <div class="cell" id="cell-4"></div>
+        <div class="cell" id="cell-5"></div>
+        <div class="cell" id="cell-6"></div>
+        <div class="cell" id="cell-7"></div>
+        <div class="cell" id="cell-8"></div>
+      </div>
+      <div id="status"></div>
+      <button id="restart-btn">Restart Game</button>
+      <div id="chat-container" style="display:none;">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type a message" />
+        <button id="chat-send">Send</button>
+        <div id="reactions">
+          <button class="reaction-btn">😀</button>
+          <button class="reaction-btn">😢</button>
+          <button class="reaction-btn">😡</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Win Modal -->
+    <div id="winModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h2 id="winMessage"></h2>
+        <button id="playAgainBtn">Play Again</button>
+        <button id="exitBtn">Exit</button>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <p>Developed by <strong>ethix-xsid</strong> | <a href="https://wa.me/919142294671" target="_blank">wa.me/919142294671</a></p>
+    </footer>
+  </div>
+  
+  <!-- Background Music and Click Sound (Replace src with your own file URLs) -->
+  <audio id="bgMusic" src="bg-music.mp3" loop autoplay></audio>
+  <audio id="clickSound" src="click-sound.mp3"></audio>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
